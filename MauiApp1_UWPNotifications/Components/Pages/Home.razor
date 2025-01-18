@@ -1,0 +1,75 @@
+﻿@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<br />
+<br />
+<div>
+    Launch arguments: @AppLaunchArguments.LaunchArguments
+</div>
+
+<br />
+<br />
+<button class="btn btn-primary" @onclick="SendNotification">send notification</button>
+<br />
+<div>
+    Notification sent: @isNotificationSent
+</div>
+
+@code {
+
+    bool isNotificationSent = false;
+    string combinedArguments = "";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        try
+        {
+            // await Task.Delay(100);
+
+            // combinedArguments = string.Join(" ", AppLaunchArguments.LaunchArguments);
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+    }
+
+    private void SendNotification()
+    {
+        try
+        {
+#if WINDOWS
+        DateTime? dateTime = DateTime.Now.AddSeconds(15);
+
+        //ToastNotificationManagerCompat.History.Remove("9813", "localNotificationWindows");
+        
+        new Microsoft.Toolkit.Uwp.Notifications.ToastContentBuilder()
+            .AddArgument("conversationId", "9813")
+            .AddToastActivationInfo(null, Microsoft.Toolkit.Uwp.Notifications.ToastActivationType.Foreground)
+            .AddText("Test", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Header)
+            .AddText("This is a test notification in Windows", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Body)
+            .SetBackgroundActivation()
+            .Schedule((DateTimeOffset)dateTime.Value, t =>
+                {
+                t.ExpirationTime = dateTime.Value.AddDays(1);
+                t.Tag = "9813";
+                t.Group = "localNotificationWindows";
+                t.Id = "9813";
+            });
+            
+
+        isNotificationSent = true;
+#endif
+            StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+
+            throw;
+        }
+    }
+}
