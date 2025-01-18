@@ -22,17 +22,17 @@
         <Nullable>enable</Nullable>
 
         <!-- Display name -->
-        <ApplicationTitle>MauiApp1_UWPNotifications</ApplicationTitle>
+        <ApplicationTitle>MauiApp1UWPNotifications</ApplicationTitle>
 
         <!-- App Identifier -->
-        <ApplicationId>com.companyname.mauiapp1_uwpnotifications</ApplicationId>
+        <ApplicationId>com.companyname.mauiapp1uwpnotifications</ApplicationId>
 
         <!-- Versions -->
         <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
         <ApplicationVersion>1</ApplicationVersion>
 
         <!-- To develop, package, and publish an app to the Microsoft Store, see: https://aka.ms/MauiTemplateUnpackaged -->
-        <WindowsPackageType>None</WindowsPackageType>
+        <WindowsPackageType>MSIX</WindowsPackageType>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">15.0</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">15.0</SupportedOSPlatformVersion>
@@ -40,6 +40,16 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+        <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+        <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+        <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+        <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+        <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+        <GenerateTestArtifacts>True</GenerateTestArtifacts>
+        <AppInstallerUri>C:\Users\perfe\source\repos\MauiApp1_UWPNotifications\Publish</AppInstallerUri>
+        <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+        <DefaultLanguage>en</DefaultLanguage>
+        <PackageCertificateThumbprint>FF9C21BD2058EE5BFE00C23D1E5F8B00A5A87359</PackageCertificateThumbprint>
     </PropertyGroup>
 
     <ItemGroup>
@@ -58,6 +68,20 @@
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
         <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\Images\assets\%24placeholder%24.scale-400.png" />
+      <None Remove="Resources\Images\assets\%24placeholder%24.targetsize-256.png" />
+      <None Remove="Resources\Images\assets\%24placeholder%24.targetsize-256_altform-lightunplated.png" />
+      <None Remove="Resources\Images\assets\%24placeholder%24.targetsize-256_altform-unplated.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Resources\Images\assets\$placeholder$.scale-400.png" />
+      <Content Include="Resources\Images\assets\$placeholder$.targetsize-256.png" />
+      <Content Include="Resources\Images\assets\$placeholder$.targetsize-256_altform-lightunplated.png" />
+      <Content Include="Resources\Images\assets\$placeholder$.targetsize-256_altform-unplated.png" />
     </ItemGroup>
 
     <ItemGroup>

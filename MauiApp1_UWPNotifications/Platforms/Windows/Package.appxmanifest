@@ -5,17 +5,20 @@
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
-  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"  
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
   IgnorableNamespaces="uap rescap">
 
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=User Name" Version="0.0.0.0" />
+  <!-- xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" -->
+  
+  <Identity Name="maui-package-name-placeholder" Publisher="CN=perfe" Version="1.0.11.0" />
 
   <mp:PhoneIdentity PhoneProductId="3D60634C-7284-4380-BC09-699B4C96B05F" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>$placeholder$</DisplayName>
-    <PublisherDisplayName>User Name</PublisherDisplayName>
-    <Logo>$placeholder$.png</Logo>
+    <PublisherDisplayName>MauiApp1UWPNotifications</PublisherDisplayName>
+    <Logo>Resources\Images\assets\$placeholder$.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -32,34 +35,33 @@
       <uap:VisualElements
         DisplayName="$placeholder$"
         Description="$placeholder$"
-        Square150x150Logo="$placeholder$.png"
-        Square44x44Logo="$placeholder$.png"
+        Square150x150Logo="Resources\Images\assets\$placeholder$.png"
+        Square44x44Logo="Resources\Images\assets\$placeholder$.png"
         BackgroundColor="transparent">
-        <uap:DefaultTile Square71x71Logo="$placeholder$.png" Wide310x150Logo="$placeholder$.png" Square310x310Logo="$placeholder$.png" />
-        <uap:SplashScreen Image="$placeholder$.png" />
+        <uap:DefaultTile Square71x71Logo="Resources\Images\assets\$placeholder$.png" Wide310x150Logo="Resources\Images\assets\$placeholder$.png" Square310x310Logo="Resources\Images\assets\$placeholder$.png"  ShortName="test">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="square150x150Logo"/>
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile >
+        <uap:SplashScreen Image="Resources\Images\assets\$placeholder$.png" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="landscape"/></uap:InitialRotationPreference>
       </uap:VisualElements>
 
-      <!--Specify which CLSID to activate when notification is clicked-->                          
+      <!--Specify which CLSID to activate when notification is clicked-->
       <Extensions>
         <desktop:Extension Category="windows.toastNotificationActivation">
-
-          <!-- Change Id to your ApplicationIdGuid, which can be found in your .Net Maui csproj -->
           <desktop:ToastNotificationActivation ToastActivatorCLSID="1129283E-6683-440C-BE61-B36DA1E767AF" />
         </desktop:Extension>
 
-        <!--Register COM CLSID LocalServer32 registry key-->
         <com:Extension Category="windows.comServer">
           <com:ComServer>
-
-            <!-- Change Executable to the EXE of your project -->
             <com:ExeServer Executable="MauiApp1_UWPNotifications.exe" Arguments="-ToastActivated" DisplayName="MauiApp1_UWPNotifications">
-
-              <!-- Change Id to your ApplicationIdGuid, which can be found in your .Net Maui csproj -->
               <com:Class Id="1129283E-6683-440C-BE61-B36DA1E767AF" DisplayName="MauiApp1_UWPNotifications"/>
             </com:ExeServer>
           </com:ComServer>
         </com:Extension>
-      </Extensions>      
+      </Extensions>   
       
     </Application>
   </Applications>

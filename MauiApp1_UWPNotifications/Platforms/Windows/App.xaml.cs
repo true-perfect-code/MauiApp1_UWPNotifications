@@ -53,26 +53,26 @@ namespace MauiApp1_UWPNotifications.WinUI
         //{
         //}
 
-        //protected override void OnLaunched(LaunchActivatedEventArgs args)
-        //{
-        //    //notificationManager.Init();
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
+        {
+            //notificationManager.Init();
 
-        //    //var currentInstance = AppInstance.GetCurrent();
-        //    //if (currentInstance != null)
-        //    //{
-        //    //    var activationArgs = currentInstance.GetActivatedEventArgs();
-        //    //    if (activationArgs.Kind == ExtendedActivationKind.AppNotification)
-        //    //    {
-        //    //        var notificationActivatedEventArgs = activationArgs.Data as AppNotificationActivatedEventArgs;
-        //    //        if (notificationActivatedEventArgs != null)
-        //    //        {
-        //    //            notificationManager.ProcessLaunchActivationArgs(notificationActivatedEventArgs);
-        //    //        }
-        //    //    }
-        //    //}
-           
-        //    base.OnLaunched(args);
-        //}
+            //var currentInstance = AppInstance.GetCurrent();
+            //if (currentInstance != null)
+            //{
+            //    var activationArgs = currentInstance.GetActivatedEventArgs();
+            //    if (activationArgs.Kind == ExtendedActivationKind.AppNotification)
+            //    {
+            //        var notificationActivatedEventArgs = activationArgs.Data as AppNotificationActivatedEventArgs;
+            //        if (notificationActivatedEventArgs != null)
+            //        {
+            //            notificationManager.ProcessLaunchActivationArgs(notificationActivatedEventArgs);
+            //        }
+            //    }
+            //}
+            AppLaunchArguments.LaunchArguments = string.Join(" ", args.Arguments);
+            base.OnLaunched(args);
+        }
 
         private void OnProcessExit(object? sender, EventArgs e)
         {
