@@ -87,9 +87,7 @@ namespace MauiApp1_UWPNotifications.WinUI
         {
             ToastArguments toastArgs = ToastArguments.Parse(e.Argument);
             foreach (var argument in toastArgs)
-            {
                 AppLaunchArguments.LaunchArguments += argument.Value;
-            }
             
 
             //var nPID = System.Diagnostics.Process.GetCurrentProcess().Id;
