@@ -47,9 +47,22 @@ Welcome to your new app.
 
         //ToastNotificationManagerCompat.History.Remove("9813", "localNotificationWindows");
         
+        // new Microsoft.Toolkit.Uwp.Notifications.ToastContentBuilder()
+        //     .AddArgument("conversationId", "9813")
+        //     .AddToastActivationInfo(null, Microsoft.Toolkit.Uwp.Notifications.ToastActivationType.Foreground)
+        //     .AddText("Test", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Header)
+        //     .AddText("This is a test notification in Windows", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Body)
+        //     .SetBackgroundActivation()
+        //     .Schedule((DateTimeOffset)dateTime.Value, t =>
+        //         {
+        //         t.ExpirationTime = dateTime.Value.AddDays(1);
+        //         t.Tag = "9813";
+        //         t.Group = "localNotificationWindows";
+        //         t.Id = "9813";
+        //     });
+
         new Microsoft.Toolkit.Uwp.Notifications.ToastContentBuilder()
             .AddArgument("conversationId", "9813")
-            .AddToastActivationInfo(null, Microsoft.Toolkit.Uwp.Notifications.ToastActivationType.Foreground)
             .AddText("Test", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Header)
             .AddText("This is a test notification in Windows", hintStyle: Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Body)
             .SetBackgroundActivation()

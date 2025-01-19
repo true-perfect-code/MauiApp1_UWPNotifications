@@ -11,7 +11,7 @@
   <!-- xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
   xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10" -->
   
-  <Identity Name="maui-package-name-placeholder" Publisher="CN=perfe" Version="1.0.11.0" />
+  <Identity Name="maui-package-name-placeholder" Publisher="CN=perfe" Version="1.0.12.0" />
 
   <mp:PhoneIdentity PhoneProductId="3D60634C-7284-4380-BC09-699B4C96B05F" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
