@@ -23,28 +23,32 @@ namespace MauiApp1_UWPNotifications.WinUI
         {
             this.InitializeComponent();
 
+            ToastNotificationManagerCompat.OnActivated += ToastNotificationManagerCompat_OnActivated;
+
             //notificationManager = new NotificationManager();
             //AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
 
-            // need to add this because otherwise setting background activation does nothing.
-            ToastNotificationManagerCompat.OnActivated += (notificationArgs) =>
-            {
-                // this will run everytime ToastNotification.Activated is called,
-                // regardless of what toast is clicked and what element is clicked on.
-                // Works for all types of ToastActivationType so long as the Windows app manifest
-                // has been updated to support ToastNotifications. 
+            //// need to add this because otherwise setting background activation does nothing.
+            //ToastNotificationManagerCompat.OnActivated += (notificationArgs) =>
+            //{
+            //    // this will run everytime ToastNotification.Activated is called,
+            //    // regardless of what toast is clicked and what element is clicked on.
+            //    // Works for all types of ToastActivationType so long as the Windows app manifest
+            //    // has been updated to support ToastNotifications. 
 
-                // you can check your args here, however I'll be doing mine below to keep it cleaner.
-                // With so many ToastNotifications it would be messy to check all of them here.
+            //    // you can check your args here, however I'll be doing mine below to keep it cleaner.
+            //    // With so many ToastNotifications it would be messy to check all of them here.
 
-                //Debug.WriteLine($"A ToastNotification was just activated! Arguments: {notificationArgs.Argument}");
+            //    //Debug.WriteLine($"A ToastNotification was just activated! Arguments: {notificationArgs.Argument}");
 
-                //// using the code below to show a popup from MainPage, saying that the toast itself was clicked.
-                //if (notificationArgs.Argument.Contains("action=toastClicked"))
-                //    ShowPopup?.Invoke("The Toast was clicked!");
+            //    //// using the code below to show a popup from MainPage, saying that the toast itself was clicked.
+            //    //if (notificationArgs.Argument.Contains("action=toastClicked"))
+            //    //    ShowPopup?.Invoke("The Toast was clicked!");
 
-                AppLaunchArguments.LaunchArguments = string.Join(" ", notificationArgs.Argument);
-            };
+            //    AppLaunchArguments.LaunchArguments = string.Join(" ", notificationArgs.Argument);
+            //};
+
+
         }
 
         protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
@@ -77,6 +81,31 @@ namespace MauiApp1_UWPNotifications.WinUI
         private void OnProcessExit(object? sender, EventArgs e)
         {
             notificationManager.Unregister();
+        }
+
+        private void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
+        {
+            ToastArguments toastArgs = ToastArguments.Parse(e.Argument);
+            foreach (var argument in toastArgs)
+            {
+                AppLaunchArguments.LaunchArguments += argument.Value;
+            }
+            
+
+            //var nPID = System.Diagnostics.Process.GetCurrentProcess().Id;
+            //foreach (var argument in toastArgs)
+            //{
+            //   // Debug.WriteLine($"Toast argument: {argument}", nameof(OnActivated));
+
+            //    string sString = $"Toast argument: {argument}";
+            //    sString += (" PID = " + nPID.ToString());
+            //    bool isQueued = this.DispatcherQueue.TryEnqueue(Microsoft.UI.Dispatching.DispatcherQueuePriority.Normal, async () =>
+            //    {
+            //        Windows.UI.Popups.MessageDialog md = new Windows.UI.Popups.MessageDialog(sString, "Information");
+            //        WinRT.Interop.InitializeWithWindow.Initialize(md, hWndMain);
+            //        _ = await md.ShowAsync();
+            //    });
+            //}
         }
 
     }
